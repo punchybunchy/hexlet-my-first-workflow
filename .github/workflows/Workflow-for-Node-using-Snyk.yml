@@ -4,8 +4,14 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         env:
-          SNYK_TOKEN: ${{ secrets.3be55f84-0863-461b-8278-57fddd6edf9b }}
+          SNYK_TOKEN: ${{ secrets.a69a5556-6482-44a6-bd60-e23bf60ecb2b }}
